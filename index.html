@@ -1,1003 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta chraset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css" rel="stylesheet">
+
+        <style>
+            body{
+                font-family: Poppins, sans-serif;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin:0;
+            }
+
+            .container{
+                background: rgba(255,255,255,0.15);
+                backdrop-filter: blur(15px);
+                padding: 30px; 
+                border-radius: 20px;
+                width: 380px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                text-align: center;
+                
+            }
+
+            h1{
+                margin-bottom: 15px;
+                color:#6a0dad;
+            }
+
+            .container h1{
+                margin-bottom: 15px;
+            }
+
+            input{
+                padding: 12px;
+                border-radius: 12px;
+                border: none;
+                outline: none;
+                background: rgba(255,255,255,0.8);
+                box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .input-group{
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 15px;
+            }
+
+            .input-group input{
+                width: 100%;
+                margin-bottom:12px;
+            }
+
+            
+
+            input:focus{
+                border-color: #6a0dad;
+                box-shadow: 0 0 8px rgba(106,13,173,0.3);
+            }
+
+            
+
+            button{ 
+                padding: 10px 18px;
+                border: none;
+                background: linear-gradient(135deg,#8e2de2,#4a00e0);
+                color: white;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: 0.3s;
+                
+            }
+
+            button:hover{
+                transform: translate(1.05);
+                
+            }
+
+            li{
+                background: linear-gradient(135deg,#6a0dad, #8e2de2);
+                padding: 12px;
+                margin-top: 12px;
+                border-radius: 12px;
+                color: white;
+                
+                
+            }
+
+            li:hover{
+                transform: scale(1.03);
+            }
+
+            li div button{
+                margin-left: 5px;
+                padding: 5px 8px;
+                font-size: 14px;
+            }
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Shreya Gharat | Frontend Developer</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:linear-gradient(-45deg,#f3e8ff,#e9d5ff,#d8b4fe,#f5d0fe);
-background-size:400% 400%;
-animation:gradientBG 10s ease infinite;
-color:#2b2b2b;
-overflow-x:hidden;
-}
-
-@keyframes gradientBG{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-/* NAVBAR */
-
-.navbar{
-position:fixed;
-top:0;
-width:100%;
-z-index:1000;
-
-background:rgba(255,255,255,0.35);
-backdrop-filter:blur(18px);
-
-border-bottom:1px solid rgba(255,255,255,0.2);
-}
-
-.nav-container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:18px 10%;
-}
-
-.nav-logo a{
-text-decoration:none;
-font-size:24px;
-font-weight:700;
-color:#6a0dad;
-}
-
-.nav-menu{
-display:flex;
-list-style:none;
-gap:25px;
-}
-
-.nav-link{
-text-decoration:none;
-font-weight:500;
-color:#333;
-transition:0.3s;
-position:relative;
-}
-
-.nav-link:hover{
-color:#6a0dad;
-}
-
-.nav-link::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-5px;
-
-width:0%;
-height:2px;
-
-background:#6a0dad;
-transition:0.3s;
-}
-
-.nav-link:hover::after{
-width:100%;
-}
-
-/* HERO */
-
-.hero{
-min-height:100vh;
+            .dark{
+                background: #121212;
+                color: white;
+            }
 
-display:flex;
-align-items:center;
+            .dark.container{
+                background: #1e1e1e;
+            }
 
-padding:120px 10% 60px;
-}
+            .dark.input{
+                background: #333;
+                color: white;
+                border: 1px solid #555;
+            }
 
-.hero-container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:70px;
+            .dark li{
+                background: #333;
+            }
 
-width:100%;
+            .dark button{
+                background: #6a0dad;
+            }
 
-opacity:0;
-transform:translateY(50px);
+            .container{
+                animation: fadeIn 0.6s ease;
+            }
 
-animation:fadeUp 1s ease forwards;
-}
+            @keyframes fadeIn{
+                from{
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to{
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-@keyframes fadeUp{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
+            i{
+                margin-right: 5px;
+            }
 
-.hero-left{
-flex:1;
-}
+            .completed{
+                text-decoration: line-through;
+                opacity: 0.6;
+            }
 
-.hero-title{
-font-size:60px;
-line-height:1.2;
-color:#6a0dad;
-margin-bottom:10px;
-}
+        </style>
 
-.hero-sub{
-font-size:18px;
-opacity:0.8;
-margin-bottom:10px;
-}
+        <title>To-Do App</title>
+    </head>
 
-.hero-desc{
-font-size:16px;
-line-height:1.8;
-max-width:550px;
-color:#444;
-margin:20px 0;
-}
+    <body>
 
-.hero-badge{
-display:inline-flex;
-align-items:center;
-gap:8px;
+        <div class="container">
 
-padding:10px 18px;
+        <button id="modeBtn" onclick="toggleMode()">🌙 Dark Mode</button>
 
-background:rgba(255,255,255,0.6);
+        <div>
+            <button onclick="filterTasks('all')">All</button>
+            <button onclick="filterTasks('completed')">Completed</button>
+            <button onclick="filterTasks('pending')">Pending</button>
+            <button onclick="clearAll()">🗑️ Clear All</button>
+        </div>
 
-border-radius:30px;
+        <h1>To-Do App</h1>
 
-font-size:14px;
-font-weight:600;
+        <div id="taskStats" style="margin-bottom:10px; font-size: 14px;">
+            Total:0 | Completed: 0 | Pending: 0
+        </div>
 
-color:#6a0dad;
 
-backdrop-filter:blur(10px);
 
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        <div class="input-group">
+<input type="text" id="searchInput" placeholder="Search Task...">
 
-margin-top:15px;
-}
-
-.hero-badge i{
-font-size:10px;
-color:#22c55e;
-animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-0%{
-transform:scale(1);
-opacity:1;
-}
-
-50%{
-transform:scale(1.3);
-opacity:0.5;
-}
-
-100%{
-transform:scale(1);
-opacity:1;
-}
-}
-
-.btn{
-display:inline-block;
-
-padding:13px 25px;
-
-border-radius:30px;
-
-text-decoration:none;
-
-font-weight:500;
-
-margin-right:12px;
-margin-top:20px;
-
-transition:0.3s;
-}
-
-.btn-primary{
-background:#6a0dad;
-color:white;
-
-box-shadow:0 10px 25px rgba(106,13,173,0.3);
-}
-
-.btn-primary:hover{
-transform:translateY(-5px);
-}
-
-.btn-secondary{
-border:2px solid #6a0dad;
-color:#6a0dad;
-background:transparent;
-}
-
-.btn-secondary:hover{
-background:#6a0dad;
-color:white;
-}
-
-.status-box{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-
-margin-top:30px;
-}
-
-.status-item{
-display:flex;
-align-items:center;
-gap:10px;
-
-padding:12px 18px;
-
-border-radius:30px;
-
-background:rgba(255,255,255,0.5);
-
-backdrop-filter:blur(12px);
-
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
-
-font-size:14px;
-font-weight:500;
-
-color:#6a0dad;
-
-transition:0.3s;
-}
-
-.status-item:hover{
-transform:translateY(-5px);
-}
-
-.profile-img{
-width:300px;
-height:300px;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:120px;
-
-border-radius:50%;
-
-background:rgba(255,255,255,0.4);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,0.2);
-
-box-shadow:
-0 20px 50px rgba(0,0,0,0.15),
-0 0 40px rgba(168,85,247,0.3);
-
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%,100%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-15px);
-}
-}
-
-/* SECTION */
-
-section{
-padding:100px 10%;
-}
-
-.section-title{
-text-align:center;
-font-size:38px;
-margin-bottom:50px;
-color:#6a0dad;
-}
-
-/* GLASS CARD */
-
-.card{
-background:rgba(255,255,255,0.4);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,0.2);
-
-padding:30px;
-
-border-radius:25px;
-
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-
-transition:0.4s ease;
-}
-
-.card:hover{
-transform:translateY(-10px);
-
-box-shadow:
-0 20px 40px rgba(0,0,0,0.12),
-0 0 30px rgba(168,85,247,0.15);
-}
-
-/* BADGES */
-
-.badge{
-display:inline-block;
-
-padding:7px 14px;
-
-background:#f3e8ff;
-
-border-radius:20px;
-
-font-size:12px;
-font-weight:600;
-
-margin:5px;
-color:#6a0dad;
-}
-
-/* SKILLS */
-
-.skills-grid,
-.projects-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.skills-grid .card h3{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:20px;
-margin-bottom:15px;
-color:#6a0dad;
-}
-
-.skills-grid .card h3 i{
-font-size:24px;
-}
-
-.skills-grid .card p{
-margin-top:15px;
-font-size:14px;
-line-height:1.6;
-color:#555;
-}
-
-.skill-bar{
-height:10px;
-background:#eee;
-border-radius:20px;
-overflow:hidden;
-margin-top:12px;
-}
-
-.skill-progress{
-height:10px;
-width:0;
-
-background:linear-gradient(90deg,#c084fc,#6a0dad);
-
-border-radius:20px;
-
-transition:2s;
-}
-
-/* PROJECTS */
-
-.project-img{
-width:100%;
-border-radius:18px;
-margin-bottom:18px;
-}
-
-.project-card{
-overflow:hidden;
-}
-
-.project-card:hover{
-transform:translateY(-12px) scale(1.02);
-
-box-shadow:
-0 20px 40px rgba(0,0,0,0.15),
-0 0 30px rgba(168,85,247,0.2);
-}
-
-.project-tags{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin:15px 0;
-}
-
-.project-tags span{
-padding:6px 14px;
-border-radius:20px;
-
-background:#f3e8ff;
-
-font-size:12px;
-font-weight:600;
-
-color:#6a0dad;
-}
-
-/* CONTACT */
-
-.contact-form input,
-.contact-form textarea{
-width:100%;
-
-padding:14px;
-
-margin-bottom:15px;
-
-border:none;
-outline:none;
-
-border-radius:12px;
-
-background:rgba(255,255,255,0.7);
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus{
-border:2px solid #6a0dad;
-}
-
-#formMsg{
-margin-top:10px;
-font-weight:500;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-
-padding:25px;
-
-background:rgba(255,255,255,0.4);
-
-backdrop-filter:blur(15px);
-}
-
-/* ANIMATION */
-
-.hidden{
-opacity:0;
-transform:translateY(50px);
-transition:1s ease;
-}
-
-.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-.hero{
-padding:130px 20px 60px;
-}
-
-.hero-container{
-flex-direction:column-reverse;
-text-align:center;
-gap:40px;
-}
-
-.hero-title{
-font-size:42px;
-}
-
-.hero-desc{
-max-width:100%;
-}
-
-.profile-img{
-width:220px;
-height:220px;
-border-radius:50%;
-background:linear-gradient(135deg,#a855f7,#6a0dad);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:70px;
-font-weight:700;
-color:white;
-box-shadow:0 15px 35px rgba(106,13,173,0.3);
-
-animation: float 3s ease-in-out infinite;
-}
-
-.status-box{
-justify-content:center;
-}
-
-.nav-container{
-padding:15px 20px;
-}
-
-.nav-menu{
-display:none;
-}
-
-.section-title{
-font-size:30px;
-}
-
-.skills-grid,
-.projects-grid{
-grid-template-columns:1fr;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="nav-container">
-
-<div class="nav-logo">
-<a href="#">Shreya Nitin Gharat ✨</a>
-</div>
-
-<ul class="nav-menu">
-
-<li><a href="#home" class="nav-link">Home</a></li>
-<li><a href="#about" class="nav-link">About</a></li>
-<li><a href="#skills" class="nav-link">Skills</a></li>
-<li><a href="#projects" class="nav-link">Projects</a></li>
-<li><a href="#contact" class="nav-link">Contact</a></li>
-
-</ul>
+<input type="text" id="taskInput" placeholder="Enter Task">
 
 </div>
 
-</nav>
+<div style="display:flex; gap:10px;">
+<input type="date" id="taskDate" style="flex:1">
+<button onclick="addTask()">Add</button>
 
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-<div class="hero-container">
-
-<div class="hero-left">
-
-<h1 class="hero-title typing"></h1>
-
-<p class="hero-sub">
-Frontend Developer | UI/UX Learner
-</p>
-
-<div class="hero-badge">
-<i class="fas fa-circle"></i>
-Available For Internship
-</div>
-
-<p class="hero-desc">
-I design and develop modern responsive websites with smooth animations, clean UI and user-friendly experiences using HTML, CSS and JavaScript.
-</p>
-
-<a href="#projects" class="btn btn-primary">
-View Projects
-</a>
-
-<a href="#contact" class="btn btn-secondary">
-Hire Me
-</a>
-
-<div class="status-box">
-
-<div class="status-item">
-<i class="fas fa-map-marker-alt"></i>
-<span>Alibag-Raigad, Maharashtra</span>
-</div>
-
-<div class="status-item">
-<i class="fas fa-laptop-house"></i>
-<span>Ready To Work Remotely</span>
-</div>
+<select id="priority">
+    <option value="low">🟢 Low</option>
+    <option value="medium">⚡ Medium</option>
+    <option value="high">🔥 High</option>
+</select>
 
 </div>
 
-</div>
 
-<div class="profile-img">
-<span>SG</span>
-</div>
+<ul id="taskList"></ul>
 
 </div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about">
-
-<h2 class="section-title">
-About Me
-</h2>
-
-<div class="card">
-
-<p>
-Hi 👋 I'm Shreya Gharat, a passionate Frontend Developer and UI/UX learner from India 🇮🇳.
-I love building modern responsive websites with smooth animations and clean user experiences.
-</p>
-
-<br>
-
-<p>
-Currently I am pursuing B.Sc Chemistry while learning Frontend Development including HTML, CSS, JavaScript and UI/UX Design using Figma.
-</p>
-
-<br>
-
-<p>
-My goal is to become a professional Frontend Developer and work on real-world projects through internships and freelancing.
-</p>
-
-<br>
-
-<div>
-
-<span class="badge">HTML</span>
-<span class="badge">CSS</span>
-<span class="badge">JavaScript</span>
-<span class="badge">Figma</span>
-<span class="badge">Responsive Design</span>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- SKILLS -->
-<section id="skills">
-<h2 class="section-title">Skills</h2>
-
-<div class="skills-grid">
-
-<div class="card">
-<h3><i class="fab fa-html5"></i> HTML</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="95"></div>
-</div>
-<p>Semantic structure, SEO-friendly layouts, responsive sections.</p>
-</div>
-
-<div class="card">
-<h3><i class="fab fa-css3-alt"></i> CSS</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="92"></div>
-</div>
-<p>Modern UI design, animations, glassmorphism & responsive styling.</p>
-</div>
-
-<div class="card">
-<h3><i class="fab fa-js"></i> JavaScript</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="85"></div>
-</div>
-<p>DOM manipulation, interactive UI, API integration & dynamic features.</p>
-</div>
-
-<div class="card">
-<h3><i class="fab fa-figma"></i> Figma UI Design</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="80"></div>
-</div>
-<p>Wireframes, UI systems, modern layouts & mobile-first design.</p>
-</div>
-
-<div class="card">
-<h3><i class="fab fa-wordpress"></i> WordPress</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="70"></div>
-</div>
-<p>Learning WordPress website customization, themes & page builders.</p>
-</div>
-
-</div>
-</section>
-
-<!-- PROJECTS -->
-
-<section id="projects">
-
-<h2 class="section-title">
-Featured Projects
-</h2>
-
-<div class="projects-grid">
-
-<div class="card project-card">
-
-<img src="portfolio-interface.jpeg" class="project-img">
-
-<h3>Portfolio Website</h3>
-
-<p>
-Modern responsive personal branding website with animations.
-</p>
-
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
-
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
-
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
-
-</div>
-
-<div class="card project-card">
-
-<img src="To-Do-app.jpeg" class="project-img">
-
-<h3>To-Do App</h3>
-
-<p>
-Advanced task management app with priority system, drag & drop and local storage.
-</p>
-
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
-
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
-
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
-
-</div>
-
-<div class="card project-card">
-
-<img src="e-commerce-ui.jpeg" class="project-img">
-
-<h3>E-Commerce UI</h3>
-
-<p>
-Beautiful shopping interface with clean product layout and responsive design.
-</p>
-
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
-
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
-
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
-
-</div>
-
-<div class="card project-card">
-
-<img src="weather-app-interface.jpeg" class="project-img">
-
-<h3>Weather App</h3>
-
-<p>
-Modern weather app with real-time weather information using API integration.
-</p>
-
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
-
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
-
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-<h2 class="section-title">
-Contact Me
-</h2>
-
-<form class="card contact-form" onsubmit="sendMessage(event)">
-
-<input type="text" id="name" placeholder="Your Name">
-
-<input type="email" id="email" placeholder="Your Email">
-
-<textarea id="message" rows="5" placeholder="Your Message"></textarea>
-
-<button class="btn btn-primary">
-Send Message
-</button>
-
-<p id="formMsg"></p>
-
-</form>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-<b>© 2026 Shreya Nitin Gharat | Designed with ❤️</b>
-</footer>
 
 <script>
 
-/* TYPING EFFECT */
+    let tasks = 
+    JSON.parse(localStorage.getItem("tasks")) || [];
 
-let text = "Hi, I'm Shreya 👩‍💻";
-let i = 0;
+  function showTasks(){
+    let list = document.getElementById("taskList");
+    list.innerHTML = "";
 
-function type(){
+    tasks.forEach((task, index)=>{
+        let li = document.createElement("li");
+        li.setAttribute("draggable", true);
 
-if(i < text.length){
+        let today = new Date().toISOString().split("T")[0];
+        let isOverdue = task.date && task.date < today;
 
-document.querySelector(".typing").innerHTML += text.charAt(i);
+        if(isOverdue){
+            li.style.background = "#ff4d4d";
+        }
 
-i++;
+        if(task.priority === "high"){
+            li.style.borderLeft = "5px solid red";
+        }
+        else if(task.priority === "medium"){
+            li.style.borderLeft = "5px solid orange";
+        }
+        else{
+            li.style.borderLeft = "5px solid green";
+        }
 
-setTimeout(type,90);
+        li.innerHTML = `
+        <span onclick="toggleTask(${index})" class="${task.done ? 'completed' : ''}">
+        ${task.text} <br>
+        <small>${task.date || ""}</small>
+        <br>
+        <b>${task.priority}</b>
+        </span>
 
+        <div>
+        <button onclick="editTask(${index})">✏️</button>
+        <button onclick="deleteTask(${index})">❌</button>
+        </div>
+        `;
+
+        li.addEventListener("dragstart", () => {
+           li.classList.add("dragging");
+        });
+
+        li.addEventListener("dragend", () => {
+           li.classList.remove("dragging");
+       updateOrder();
+       });
+
+        list.appendChild(li);
+    });
+
+    updateStats();
+}  
+
+
+function searchTask(){
+    let search = document.getElementById("searchInput").value.toLowerCase();
+
+    let listItems = document.querySelectorAll("#taskList li");
+
+    listItems.forEach(li => {
+        let text = li.innerText.toLowerCase();
+
+        if(text.includes(search)){
+            li.style.display = "flex";
+        } else {
+            li.style.display = "none";
+        }
+    });
 }
 
+function editTask(index){
+    let newTask = prompt("Edit Your Task:", tasks[index].text);
+
+    if(newTask !== null && newTask.trim() !== ""){
+        tasks[index].text = newTask;
+        updateStorage();
+    }
 }
 
-type();
 
-/* SKILL ANIMATION */
 
-window.addEventListener("scroll",()=>{
+function addTask(){
+    let input = document.getElementById("taskInput");
+    let date =  document.getElementById("taskDate").value;
 
-document.querySelectorAll(".skill-progress").forEach((el)=>{
+    let priority = document.getElementById("priority").value;
 
-let top = el.getBoundingClientRect().top;
+    if(input.value === ""){
+        alert("Enter task");
+        return;
+    }
 
-if(top < window.innerHeight - 50){
+    tasks.push({text: input.value,
+         done: false,
+        date: date,
+        priority: priority,
+    });
 
-el.style.width = el.getAttribute("data") + "%";
+    input.value = "";
+    document.getElementById("taskDate").value = "";
 
+    updateStorage();
 }
 
+
+function deleteTask(index){
+    tasks.splice(index,1);
+    updateStorage();
+}
+
+function toggleTask(index){
+    tasks[index].done = !tasks[index].done;
+    updateStorage();
+}
+showTasks();
+
+function updateStorage(){
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    showTasks();
+}
+
+document.getElementById("taskInput").addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+    addTask();
+}
 });
 
-});
+function toggleMode(){
+    document.body.classList.toggle("dark");
 
-/* CONTACT FORM */
+    let btn = document.getElementById("modeBtn");
 
-function sendMessage(event){
-
-event.preventDefault();
-
-let name = document.getElementById("name").value;
-
-let email = document.getElementById("email").value;
-
-let message = document.getElementById("message").value;
-
-let msg = document.getElementById("formMsg");
-
-if(name === "" || email === "" || message === ""){
-
-msg.innerHTML = "❌ Please fill all fields";
-msg.style.color = "red";
-
-return;
+    if(document.body.classList.contains("dark"))
+{
+    btn.innerHTML = "Light Mode ☀️";
+} else {
+    btn.innerHTML = "Dark Mode 🌙";
+}
+    
 }
 
-if(!email.includes("@")){
+function filterTasks(type){
+    let listItems = document.querySelectorAll("#taskList li");
 
-msg.innerHTML = "❌ Enter Valid Email";
-msg.style.color = "red";
-
-return;
+    listItems.forEach((li, index) => {
+        if(type === "all"){
+            li.style.display = "flex";
+        }
+        else if(type === "completed"){
+            if(tasks[index].done){
+                li.style.display = "flex";
+            } else {
+                li.style.display = "none";
+            }
+        }
+        else if(type === "pending"){
+            if(!tasks[index].done){
+                li.style.display = "flex";
+            } else {
+                li.style.display = "none";
+            }
+        }
+    });
 }
 
-msg.innerHTML = "✅ Message Sent Successfully!";
-msg.style.color = "green";
+function updateStats(){
+    let total = tasks.length;
+    let completed = tasks.filter(task => task.done).length;
+    let pending = total - completed;
 
+    document.getElementById("taskStats").innerHTML = 
+    `Total: ${total} | Completed: ${completed} | Pending: ${pending}`;
 }
 
-/* SCROLL REVEAL */
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
 
-const observer = new IntersectionObserver((entries)=>{
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
 
-entries.forEach((entry)=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
+const list = document.getElementById("taskList");
+
+list.addEventListener("dragover", (e) => {
+    e.preventDefault();
+
+    const afterElement = getDragAfterElement(list, e.clientY);
+    const dragging = document.querySelector(".dragging");
+
+    if (afterElement == null) {
+        list.appendChild(dragging);
+     } else {
+        list.insertBefore(dragging,afterElement);
+     }
 });
 
-});
+function updateOrder() {
+    let newTask = [];
+    let listItems = document.querySelectorAll("#taskList li");
 
-document.querySelectorAll("section,.card").forEach((el)=>{
+    listItems.forEach(li =>{
+        let text = li.querySelector("span").innerText.split("\n")[0];
 
-el.classList.add("hidden");
+        let foundTask = tasks.find(task => task.text === text);
+        if(foundTask){
+            newTask.push(foundTask);
+        }
+    });
+    tasks = newTasks;
+    updateStorage();
+}
 
-observer.observe(el);
-
-});
+function clearAll(){
+    if(confirm("Are You Sure?")){
+        tasks = [];
+        updateStorage();
+    }
+}
 
 </script>
-
-</body>
+    </body>
 </html>
