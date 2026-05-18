@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta chraset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css" rel="stylesheet">
+
+        <style>
+            body{
+                font-family: Poppins, sans-serif;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin:0;
+            }
+
+            .container{
+                background: rgba(255,255,255,0.15);
+                backdrop-filter: blur(15px);
+                padding: 30px; 
+                border-radius: 20px;
+                width: 380px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                text-align: center;
+                
+            }
+
+            h1{
+                margin-bottom: 15px;
+                color:#6a0dad;
+            }
+
+            .container h1{
+                margin-bottom: 15px;
+            }
+
+            input{
+                padding: 12px;
+                border-radius: 12px;
+                border: none;
+                outline: none;
+                background: rgba(255,255,255,0.8);
+                box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .input-group{
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 15px;
+            }
+
+            .input-group input{
+                width: 100%;
+                margin-bottom:12px;
+            }
+
+            
+
+            input:focus{
+                border-color: #6a0dad;
+                box-shadow: 0 0 8px rgba(106,13,173,0.3);
+            }
+
+            
+
+            button{ 
+                padding: 10px 18px;
+                border: none;
+                background: linear-gradient(135deg,#8e2de2,#4a00e0);
+                color: white;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: 0.3s;
+                
+            }
+
+            button:hover{
+                transform: translate(1.05);
+                
+            }
+
+            li{
+                background: linear-gradient(135deg,#6a0dad, #8e2de2);
+                padding: 12px;
+                margin-top: 12px;
+                border-radius: 12px;
+                color: white;
+                
+                
+            }
+
+            li:hover{
+                transform: scale(1.03);
+            }
+
+            li div button{
+                margin-left: 5px;
+                padding: 5px 8px;
+                font-size: 14px;
+            }
+
+            .dark{
+                background: #121212;
+                color: white;
+            }
+
+            .dark.container{
+                background: #1e1e1e;
+            }
+
+            .dark.input{
+                background: #333;
+                color: white;
+                border: 1px solid #555;
+            }
+
+            .dark li{
+                background: #333;
+            }
+
+            .dark button{
+                background: #6a0dad;
+            }
+
+            .container{
+                animation: fadeIn 0.6s ease;
+            }
+
+            @keyframes fadeIn{
+                from{
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to{
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            i{
+                margin-right: 5px;
+            }
+
+            .completed{
+                text-decoration: line-through;
+                opacity: 0.6;
+            }
+
+        </style>
+
+        <title>To-Do App</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+
+        <button id="modeBtn" onclick="toggleMode()">🌙 Dark Mode</button>
+
+        <div>
+            <button onclick="filterTasks('all')">All</button>
+            <button onclick="filterTasks('completed')">Completed</button>
+            <button onclick="filterTasks('pending')">Pending</button>
+            <button onclick="clearAll()">🗑️ Clear All</button>
+        </div>
+
+        <h1>To-Do App</h1>
+
+        <div id="taskStats" style="margin-bottom:10px; font-size: 14px;">
+            Total:0 | Completed: 0 | Pending: 0
+        </div>
+
+
+
+        <div class="input-group">
+<input type="text" id="searchInput" placeholder="Search Task...">
+
+<input type="text" id="taskInput" placeholder="Enter Task">
+
+</div>
+
+<div style="display:flex; gap:10px;">
+<input type="date" id="taskDate" style="flex:1">
+<button onclick="addTask()">Add</button>
+
+<select id="priority">
+    <option value="low">🟢 Low</option>
+    <option value="medium">⚡ Medium</option>
+    <option value="high">🔥 High</option>
+</select>
+
+</div>
+
+
+<ul id="taskList"></ul>
+
+</div>
+
+<script>
+
+    let tasks = 
+    JSON.parse(localStorage.getItem("tasks")) || [];
+
+  function showTasks(){
+    let list = document.getElementById("taskList");
+    list.innerHTML = "";
+
+    tasks.forEach((task, index)=>{
+        let li = document.createElement("li");
+        li.setAttribute("draggable", true);
+
+        let today = new Date().toISOString().split("T")[0];
+        let isOverdue = task.date && task.date < today;
+
+        if(isOverdue){
+            li.style.background = "#ff4d4d";
+        }
+
+        if(task.priority === "high"){
+            li.style.borderLeft = "5px solid red";
+        }
+        else if(task.priority === "medium"){
+            li.style.borderLeft = "5px solid orange";
+        }
+        else{
+            li.style.borderLeft = "5px solid green";
+        }
+
+        li.innerHTML = `
+        <span onclick="toggleTask(${index})" class="${task.done ? 'completed' : ''}">
+        ${task.text} <br>
+        <small>${task.date || ""}</small>
+        <br>
+        <b>${task.priority}</b>
+        </span>
+
+        <div>
+        <button onclick="editTask(${index})">✏️</button>
+        <button onclick="deleteTask(${index})">❌</button>
+        </div>
+        `;
+
+        li.addEventListener("dragstart", () => {
+           li.classList.add("dragging");
+        });
+
+        li.addEventListener("dragend", () => {
+           li.classList.remove("dragging");
+       updateOrder();
+       });
+
+        list.appendChild(li);
+    });
+
+    updateStats();
+}  
+
+
+function searchTask(){
+    let search = document.getElementById("searchInput").value.toLowerCase();
+
+    let listItems = document.querySelectorAll("#taskList li");
+
+    listItems.forEach(li => {
+        let text = li.innerText.toLowerCase();
+
+        if(text.includes(search)){
+            li.style.display = "flex";
+        } else {
+            li.style.display = "none";
+        }
+    });
+}
+
+function editTask(index){
+    let newTask = prompt("Edit Your Task:", tasks[index].text);
+
+    if(newTask !== null && newTask.trim() !== ""){
+        tasks[index].text = newTask;
+        updateStorage();
+    }
+}
+
+
+
+function addTask(){
+    let input = document.getElementById("taskInput");
+    let date =  document.getElementById("taskDate").value;
+
+    let priority = document.getElementById("priority").value;
+
+    if(input.value === ""){
+        alert("Enter task");
+        return;
+    }
+
+    tasks.push({text: input.value,
+         done: false,
+        date: date,
+        priority: priority,
+    });
+
+    input.value = "";
+    document.getElementById("taskDate").value = "";
+
+    updateStorage();
+}
+
+
+function deleteTask(index){
+    tasks.splice(index,1);
+    updateStorage();
+}
+
+function toggleTask(index){
+    tasks[index].done = !tasks[index].done;
+    updateStorage();
+}
+showTasks();
+
+function updateStorage(){
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    showTasks();
+}
+
+document.getElementById("taskInput").addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+    addTask();
+}
+});
+
+function toggleMode(){
+    document.body.classList.toggle("dark");
+
+    let btn = document.getElementById("modeBtn");
+
+    if(document.body.classList.contains("dark"))
+{
+    btn.innerHTML = "Light Mode ☀️";
+} else {
+    btn.innerHTML = "Dark Mode 🌙";
+}
+    
+}
+
+function filterTasks(type){
+    let listItems = document.querySelectorAll("#taskList li");
+
+    listItems.forEach((li, index) => {
+        if(type === "all"){
+            li.style.display = "flex";
+        }
+        else if(type === "completed"){
+            if(tasks[index].done){
+                li.style.display = "flex";
+            } else {
+                li.style.display = "none";
+            }
+        }
+        else if(type === "pending"){
+            if(!tasks[index].done){
+                li.style.display = "flex";
+            } else {
+                li.style.display = "none";
+            }
+        }
+    });
+}
+
+function updateStats(){
+    let total = tasks.length;
+    let completed = tasks.filter(task => task.done).length;
+    let pending = total - completed;
+
+    document.getElementById("taskStats").innerHTML = 
+    `Total: ${total} | Completed: ${completed} | Pending: ${pending}`;
+}
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+const list = document.getElementById("taskList");
+
+list.addEventListener("dragover", (e) => {
+    e.preventDefault();
+
+    const afterElement = getDragAfterElement(list, e.clientY);
+    const dragging = document.querySelector(".dragging");
+
+    if (afterElement == null) {
+        list.appendChild(dragging);
+     } else {
+        list.insertBefore(dragging,afterElement);
+     }
+});
+
+function updateOrder() {
+    let newTask = [];
+    let listItems = document.querySelectorAll("#taskList li");
+
+    listItems.forEach(li =>{
+        let text = li.querySelector("span").innerText.split("\n")[0];
+
+        let foundTask = tasks.find(task => task.text === text);
+        if(foundTask){
+            newTask.push(foundTask);
+        }
+    });
+    tasks = newTasks;
+    updateStorage();
+}
+
+function clearAll(){
+    if(confirm("Are You Sure?")){
+        tasks = [];
+        updateStorage();
+    }
+}
+
+</script>
+    </body>
+</html>
