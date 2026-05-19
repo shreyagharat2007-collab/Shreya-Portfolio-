@@ -1,1003 +1,948 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shreya Gharat | Frontend Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopX</title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:linear-gradient(-45deg,#f3e8ff,#e9d5ff,#d8b4fe,#f5d0fe);
-background-size:400% 400%;
-animation:gradientBG 10s ease infinite;
-color:#2b2b2b;
-overflow-x:hidden;
-}
-
-@keyframes gradientBG{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-/* NAVBAR */
-
-.navbar{
-position:fixed;
-top:0;
-width:100%;
-z-index:1000;
-
-background:rgba(255,255,255,0.35);
-backdrop-filter:blur(18px);
-
-border-bottom:1px solid rgba(255,255,255,0.2);
-}
-
-.nav-container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:18px 10%;
-}
-
-.nav-logo a{
-text-decoration:none;
-font-size:24px;
-font-weight:700;
-color:#6a0dad;
-}
-
-.nav-menu{
-display:flex;
-list-style:none;
-gap:25px;
-}
-
-.nav-link{
-text-decoration:none;
-font-weight:500;
-color:#333;
-transition:0.3s;
-position:relative;
-}
-
-.nav-link:hover{
-color:#6a0dad;
-}
-
-.nav-link::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-5px;
-
-width:0%;
-height:2px;
-
-background:#6a0dad;
-transition:0.3s;
-}
-
-.nav-link:hover::after{
-width:100%;
-}
-
-/* HERO */
-
-.hero{
-min-height:100vh;
-
-display:flex;
-align-items:center;
-
-padding:120px 10% 60px;
-}
-
-.hero-container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:70px;
-
-width:100%;
-
-opacity:0;
-transform:translateY(50px);
-
-animation:fadeUp 1s ease forwards;
-}
-
-@keyframes fadeUp{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.hero-left{
-flex:1;
-}
-
-.hero-title{
-font-size:60px;
-line-height:1.2;
-color:#6a0dad;
-margin-bottom:10px;
-}
-
-.hero-sub{
-font-size:18px;
-opacity:0.8;
-margin-bottom:10px;
-}
-
-.hero-desc{
-font-size:16px;
-line-height:1.8;
-max-width:550px;
-color:#444;
-margin:20px 0;
-}
-
-.hero-badge{
-display:inline-flex;
-align-items:center;
-gap:8px;
-
-padding:10px 18px;
-
-background:rgba(255,255,255,0.6);
-
-border-radius:30px;
-
-font-size:14px;
-font-weight:600;
-
-color:#6a0dad;
-
-backdrop-filter:blur(10px);
-
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-
-margin-top:15px;
-}
-
-.hero-badge i{
-font-size:10px;
-color:#22c55e;
-animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-0%{
-transform:scale(1);
-opacity:1;
-}
-
-50%{
-transform:scale(1.3);
-opacity:0.5;
-}
-
-100%{
-transform:scale(1);
-opacity:1;
-}
-}
-
-.btn{
-display:inline-block;
-
-padding:13px 25px;
-
-border-radius:30px;
-
-text-decoration:none;
-
-font-weight:500;
-
-margin-right:12px;
-margin-top:20px;
-
-transition:0.3s;
-}
-
-.btn-primary{
-background:#6a0dad;
-color:white;
-
-box-shadow:0 10px 25px rgba(106,13,173,0.3);
-}
-
-.btn-primary:hover{
-transform:translateY(-5px);
-}
-
-.btn-secondary{
-border:2px solid #6a0dad;
-color:#6a0dad;
-background:transparent;
-}
-
-.btn-secondary:hover{
-background:#6a0dad;
-color:white;
-}
-
-.status-box{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-
-margin-top:30px;
-}
-
-.status-item{
-display:flex;
-align-items:center;
-gap:10px;
-
-padding:12px 18px;
-
-border-radius:30px;
-
-background:rgba(255,255,255,0.5);
-
-backdrop-filter:blur(12px);
-
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
-
-font-size:14px;
-font-weight:500;
-
-color:#6a0dad;
-
-transition:0.3s;
-}
-
-.status-item:hover{
-transform:translateY(-5px);
-}
-
-.profile-img{
-width:300px;
-height:300px;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:120px;
-
-border-radius:50%;
-
-background:rgba(255,255,255,0.4);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,0.2);
-
-box-shadow:
-0 20px 50px rgba(0,0,0,0.15),
-0 0 40px rgba(168,85,247,0.3);
-
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%,100%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-15px);
-}
-}
-
-/* SECTION */
-
-section{
-padding:100px 10%;
-}
-
-.section-title{
-text-align:center;
-font-size:38px;
-margin-bottom:50px;
-color:#6a0dad;
-}
-
-/* GLASS CARD */
-
-.card{
-background:rgba(255,255,255,0.4);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,0.2);
-
-padding:30px;
-
-border-radius:25px;
-
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-
-transition:0.4s ease;
-}
-
-.card:hover{
-transform:translateY(-10px);
-
-box-shadow:
-0 20px 40px rgba(0,0,0,0.12),
-0 0 30px rgba(168,85,247,0.15);
-}
-
-/* BADGES */
-
-.badge{
-display:inline-block;
-
-padding:7px 14px;
-
-background:#f3e8ff;
-
-border-radius:20px;
-
-font-size:12px;
-font-weight:600;
-
-margin:5px;
-color:#6a0dad;
-}
-
-/* SKILLS */
-
-.skills-grid,
-.projects-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.skills-grid .card h3{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:20px;
-margin-bottom:15px;
-color:#6a0dad;
-}
-
-.skills-grid .card h3 i{
-font-size:24px;
-}
-
-.skills-grid .card p{
-margin-top:15px;
-font-size:14px;
-line-height:1.6;
-color:#555;
-}
-
-.skill-bar{
-height:10px;
-background:#eee;
-border-radius:20px;
-overflow:hidden;
-margin-top:12px;
-}
-
-.skill-progress{
-height:10px;
-width:0;
-
-background:linear-gradient(90deg,#c084fc,#6a0dad);
-
-border-radius:20px;
-
-transition:2s;
-}
-
-/* PROJECTS */
-
-.project-img{
-width:100%;
-border-radius:18px;
-margin-bottom:18px;
-}
-
-.project-card{
-overflow:hidden;
-}
-
-.project-card:hover{
-transform:translateY(-12px) scale(1.02);
-
-box-shadow:
-0 20px 40px rgba(0,0,0,0.15),
-0 0 30px rgba(168,85,247,0.2);
-}
-
-.project-tags{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin:15px 0;
-}
-
-.project-tags span{
-padding:6px 14px;
-border-radius:20px;
-
-background:#f3e8ff;
-
-font-size:12px;
-font-weight:600;
-
-color:#6a0dad;
-}
-
-/* CONTACT */
-
-.contact-form input,
-.contact-form textarea{
-width:100%;
-
-padding:14px;
-
-margin-bottom:15px;
-
-border:none;
-outline:none;
-
-border-radius:12px;
-
-background:rgba(255,255,255,0.7);
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus{
-border:2px solid #6a0dad;
-}
-
-#formMsg{
-margin-top:10px;
-font-weight:500;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-
-padding:25px;
-
-background:rgba(255,255,255,0.4);
-
-backdrop-filter:blur(15px);
-}
-
-/* ANIMATION */
-
-.hidden{
-opacity:0;
-transform:translateY(50px);
-transition:1s ease;
-}
-
-.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-.hero{
-padding:130px 20px 60px;
-}
-
-.hero-container{
-flex-direction:column-reverse;
-text-align:center;
-gap:40px;
-}
-
-.hero-title{
-font-size:42px;
-}
-
-.hero-desc{
-max-width:100%;
-}
-
-.profile-img{
-width:220px;
-height:220px;
-border-radius:50%;
-background:linear-gradient(135deg,#a855f7,#6a0dad);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:70px;
-font-weight:700;
-color:white;
-box-shadow:0 15px 35px rgba(106,13,173,0.3);
-
-animation: float 3s ease-in-out infinite;
-}
-
-.status-box{
-justify-content:center;
-}
-
-.nav-container{
-padding:15px 20px;
-}
-
-.nav-menu{
-display:none;
-}
-
-.section-title{
-font-size:30px;
-}
-
-.skills-grid,
-.projects-grid{
-grid-template-columns:1fr;
-}
-
-}
-
-</style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 
-<nav class="navbar">
+    <div class="navbar">
 
-<div class="nav-container">
+ <h2 class="logo">ShopX</h2>
+        <div class="search-box">
 
-<div class="nav-logo">
-<a href="#">Shreya Nitin Gharat ✨</a>
-</div>
+          <input type="text"id="search" placeholder="Search products..." onkeyup="searchProduct()">
 
-<ul class="nav-menu">
+           <button onclick="searchProduct()">
+             <i class="fa fa-search"></i>
+           </button>
 
-<li><a href="#home" class="nav-link">Home</a></li>
-<li><a href="#about" class="nav-link">About</a></li>
-<li><a href="#skills" class="nav-link">Skills</a></li>
-<li><a href="#projects" class="nav-link">Projects</a></li>
-<li><a href="#contact" class="nav-link">Contact</a></li>
+        </div>
 
-</ul>
+        <div class="icons">
+            <i class="fa fa-user" onclick="openLogin()" ></i>
+            <i class="fa fa-shopping-cart" onclick="goToCart()"></i>
+            <span id="cartCount">0</span>
+            <i class="fa fa-heart" onclick="goToWishlist()"></i>
+            <span id="wishlistCount">0</span>
+            <i class="fa-solid fa-box" onclick="goToOrders()"></i>
+        </div>
+    </div>
 
-</div>
+    <h2 id="notFound">No Product Found !</h2>
 
-</nav>
+    <select onchange="sortProducts(this.value)">
+     <option value="">Sort By</option>
+     <option value="low">Price Low to High</option>
+     <option value="high">Price High to Low</option>
 
-<!-- HERO -->
+    </select>
 
-<section class="hero" id="home">
 
-<div class="hero-container">
+        <div class="categories">
 
-<div class="hero-left">
+            <div class="cat" onclick="filterCategory('all')">
+                <i class="fa fa-th-large"></i>
+                <p>All</p>
+            </div>
 
-<h1 class="hero-title typing"></h1>
+            <div class="cat" onclick="filterCategory('fashion')">
+                <i class="fa fa-tshirt"></i>
+                <p>Fashion</p>
+              </div>
+                
 
-<p class="hero-sub">
-Frontend Developer | UI/UX Learner
-</p>
+                    
 
-<div class="hero-badge">
-<i class="fas fa-circle"></i>
-Available For Internship
-</div>
 
-<p class="hero-desc">
-I design and develop modern responsive websites with smooth animations, clean UI and user-friendly experiences using HTML, CSS and JavaScript.
-</p>
+            <div class="cat" onclick="filterCategory('electronics')">
+              <i class="fa fa-mobile-alt"></i>
+              <p>Electronics</p>
+            </div>
+               
 
-<a href="#projects" class="btn btn-primary">
-View Projects
-</a>
+        
 
-<a href="#contact" class="btn btn-secondary">
-Hire Me
-</a>
+            <div class="cat" onclick="filterCategory('kids')">
+              <i class="fa fa-child"></i>
+              <p>Kids</p>
 
-<div class="status-box">
+            </div>
 
-<div class="status-item">
-<i class="fas fa-map-marker-alt"></i>
-<span>Alibag-Raigad, Maharashtra</span>
-</div>
+        
+        
 
-<div class="status-item">
-<i class="fas fa-laptop-house"></i>
-<span>Ready To Work Remotely</span>
-</div>
+            <div class="cat" onclick="filterCategory('beauty')">
+                <i class="fa fa-spa"></i>
+                <p>Beauty & Care</p>
+            </div>
+                
+                      
+            <div class="cat" onclick="filterCategory('home')">
+                <i class="fa fa-couch"></i>
+                <p>Home</p>
+            </div>
+          
+        </div>
 
-</div>
 
-</div>
+         <div class="hero-banner">
 
-<div class="profile-img">
-<span>SG</span>
-</div>
+            <div class="hero-left">
+                <h1 id="bannerText">Mega Fashion Sale 🔥</h1>
+                <p>Discover trendy fashion, electronics, beauty products and more with expecting offers.</p>
 
-</div>
+                <button class="shop-btn" onclick="scrollToProducts()">Shop Now</button>
+            </div>
 
-</section>
+            <div class="hero-right">
+                <img src="banner-image.jpeg">
+            </div>
+         </div>
+        
 
-<!-- ABOUT -->
+       
+   
+<h2 class="section-title" id="productSection">Trending Products</h2>
 
-<section id="about">
+      <p id="productcount"></p>
+    <div class="products" id="products">
+      
+        <div class="card" data-category="fashion">
 
-<h2 class="section-title">
-About Me
-</h2>
+            <div class="img-box">
+              <div class="badge">TRENDING</div>
+              
+              <img src="tshirt.jpeg" onclick="viewProduct('T-Shirt', 499, 'tshirt.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'T-Shirt', 499, 'tshirt.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('T-Shirt', 499, 'tshirt.jpeg')"></i>
+
+              </div>
+
+            </div>
 
-<div class="card">
+            <h3>T-Shirt</h3>
+            <p>₹499</p>
+            <p class="desc">
+              Premium Cotton T-Shirt with soft fabric and trendy casual fit.
+            </p>
+            <div class="rating">⭐ 4.3</div>
 
-<p>
-Hi 👋 I'm Shreya Gharat, a passionate Frontend Developer and UI/UX learner from India 🇮🇳.
-I love building modern responsive websites with smooth animations and clean user experiences.
-</p>
+            <div class="btns">
+             <button onclick="addToCart('T-Shirt', 499, 'tshirt.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('T-Shirt', 499, 'tshirt.jpeg')">Buy Now</button>
+            </div>
+
+        </div>
+
+        <div class="card" data-category="fashion">
+
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+              <img src="Men-Kurta.jpeg" onclick="viewProduct('Men Kurta', 899, 'Men-Kurta.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Men Kurta', 899, 'Men-Kurta.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Men Kurta', 899, 'Men-Kurta.jpeg')"></i>
+              </div>
+            </div>  
+            <h3>Men Kurta</h3>
+            <p>₹899</p>
+            <p class="desc">
+              Elegant kurta with stylish ethnic design perfect for festivals and occasions.
+            </p>
+            <div class="rating">⭐ 4.5</div>
+
+            <div class="btns">
+             <button onclick="addToCart('Men Kurta', 899, 'Men-Kurta.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Men Kurta', 899, 'Men-Kurt.jpeg')">Buy Now</button>
+            </div>
+
+        </div>
+
 
-<br>
+        <div class="card" data-category="fashion">
 
-<p>
-Currently I am pursuing B.Sc Chemistry while learning Frontend Development including HTML, CSS, JavaScript and UI/UX Design using Figma.
-</p>
+            <div class="img-box">
+              <div class="badge">HOT</div>
+            
+              <img src="kurta image.jpeg" onclick="viewProduct('Kurta', 399, 'kurta image.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Kurta', 399, 'kurta image.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Kurta', 399, 'kurta image.jpeg')"></i>
+              </div>
+
+            </div>
+
+            <h3>Kurti</h3>
+            <p>₹399</p>
+            <p class="desc">
+            Comfortable and stylish ladies kurti with beautiful traditional patterns.
+            </p>
+            <div class="rating">⭐ 4.2</div>
+
+            <div class="btns">
+             <button onclick="addToCart('Kurta', 399, 'kurta image.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Kurta', 399, 'kurta image.jpeg')">Buy Now</button>
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="fashion">
+
+            <div class="img-box">
+              <div class="badge">BEST SELLER</div>
+              
+              <img src="saree.jpeg" onclick="viewProduct('Saree', 1349, 'saree.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Saree', 1349, 'saree.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Saree', 1349, 'saree.jpeg')"></i>
+              </div>
+
+            </div>
+
+            <h3>Saree</h3>
+            <p>₹1349</p>
+            <p class="desc">
+              Graceful saree crafted with premium fabric for a classy look.
+            </p>
+            <div class="rating">⭐ 4.3</div>
+
+            <div class="btns">
+             <button onclick="addToCart('Saree', 1349, 'saree.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Saree', 1349, 'saree.jpeg')">Buy Now</button>
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="fashion">
+
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+              <img src="midy-dress.jpeg" onclick="viewProduct('Midy Dress', 720, 'midy-dress.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Midy Dress', 720, 'midy-dress.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Midy Dress', 720, 'midy-dress.jpeg')"></i>
+              </div>
+            </div>
+            <h3>Midy Dress</h3>
+            <p>₹720</p>
+            <p class="desc">
+              Trendy midy dress with modern style and comfortable for everyday wear.
+            </p>
+            <div class="rating">⭐ 4.3</div>
+
+            <div class="btns">
+             <button onclick="addToCart('Midy Dress', 720, 'midy-dress.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Midy Dress', 720, 'midy-dress.jpeg')">Buy Now</button>
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="electronics">
+
+            <div class="img-box">
+              <div class="badge">20% OFF</div>
+              
+              <img src="mobile.jpeg" onclick="viewProduct('Mobile', 22500, 'mobile.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Mobile', 22500, 'mobile.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Mobile', 22500, 'mobile.jpeg')"></i>
+              </div>
+
+            </div>
+
+            <h3>Mobile</h3>
+            <p>₹22500</p>
+            <p class="desc">
+              High performance smartphone with stunning display and powerful battery backup.
+            </p>
+            <div class="rating">⭐ 4.5</div>
+
+            <div class="btns">
+             <button onclick="addToCart('Mobile', 22500, 'mobile.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Mobile', 22500, 'mobile.jpeg')">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="card" data-category="electronics">
+
+            <div class="img-box">
+              <div class="badge">HOT</div>
+              
+              <img src="headphone.jpeg" onclick="viewProduct('Headphone', 1999, 'headphone.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Headphone', 1999, 'headphone.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Headphone', 1999, 'headphone.jpeg')"></i>
+              </div>
+
+            </div>
+
+            <h3>Headphones</h3>
+            <p>₹1999</p>
+            <p class="desc">
+              Wireless headphone with deep bass sound and long lasting battery life.
+            </p>
+            <div class="rating">⭐ 4.3</div>
+
+            <div class="btns">
+             <button onclick="addToCart('Headphones', 1999, 'headphone.jpeg')">Add to cart</button>
+             <button onclick="buyNow('Headphone', 1999, 'headphone.jpeg')">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="card" data-category="electronics">
+
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+                <img src="watch.jpeg" onclick="viewProduct('Smart Watch', 2999, 'watch.jpeg')">
+              
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Smart Watch', 2999, 'watch.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Smart Watch', 2999, 'watch.jpeg')"></i>
+              </div>
+            
+            </div>
+
+            <h3>Smart Watch</h3>
+            <p>₹2999</p>
+            <p class="desc">
+              Smart watch with fitness tracking, calling features and stylish premium design.
+            </p>
+            <div class="rating">⭐ 4.4</div>
 
-<br>
+            <div class="btns">
+             <button onclick="addToCart('Smart Watch', 2999, 'watch.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Smart Watch', 2999, 'watch.jpeg')">Buy Now</button>
+            </div>
 
-<p>
-My goal is to become a professional Frontend Developer and work on real-world projects through internships and freelancing.
-</p>
+        </div>
+
+
+        <div class="card" data-category="home">
+
+            <div class="img-box">
+              <div class="badge">20% OFF</div>
+              
+              <img src="sofa.jpeg" onclick="viewProduct('Sofa', 9999, 'sofa.jpeg')">
+
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Sofa', 9999, 'sofa.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Sofa', 9999, 'sofa.jpeg')"></i>
+              </div>
+
+            </div>
+
+            <h3>Sofa</h3>
+            <p>₹9999</p>
+            <p class="desc">
+              Luxury comfortable sofa with modern look perfect for your living room.
+            </p>
+            <div class="rating">⭐ 4.4</div>
 
-<br>
+            <div class="btns">
+             <button onclick="addToCart('Sofa', 9999, 'sofa.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Sofa', 9999, 'sofa.jpeg')">Buy Now</button>
+            </div>
 
-<div>
+        </div>
 
-<span class="badge">HTML</span>
-<span class="badge">CSS</span>
-<span class="badge">JavaScript</span>
-<span class="badge">Figma</span>
-<span class="badge">Responsive Design</span>
 
-</div>
+        <div class="card" data-category="home">
 
-</div>
+            <div class="img-box">
+              <div class="badge">HOT</div>
+              
+              <img src="chair.jpeg" onclick="viewProduct('Chair', 2999, 'chair.jpeg')">
 
-</section>
+              <div class="overlay-icons">
+                 <i class="fa fa-heart" onclick="addToWishlist(this, 'Chair', 2999, 'chair.jpeg')"></i>
+                 <i class="fa fa-shopping-cart" onclick="addToCart('Chair', 2999, 'chair.jpeg')"></i>
+              </div>
 
+            </div>
+
+            <h3>Chair</h3>
+            <p>₹2999</p>
+            <p class="desc">
+              Premium wooden chair with elegant finish and comfortable seating experience.
+            </p>
+            <div class="rating">⭐ 4.2</div>
 
+            <div class="btns">
+             <button onclick="addToCart('Chair', 2999, 'chair.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Chair', 2999, 'chair.jpeg')">Buy Now</button>
+            </div>
 
-<!-- SKILLS -->
-<section id="skills">
-<h2 class="section-title">Skills</h2>
+            
+        </div>
 
-<div class="skills-grid">
 
-<div class="card">
-<h3><i class="fab fa-html5"></i> HTML</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="95"></div>
-</div>
-<p>Semantic structure, SEO-friendly layouts, responsive sections.</p>
-</div>
+        <div class="card" data-category="home">
 
-<div class="card">
-<h3><i class="fab fa-css3-alt"></i> CSS</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="92"></div>
-</div>
-<p>Modern UI design, animations, glassmorphism & responsive styling.</p>
-</div>
+            <div class="img-box">
+              <div class="badge">TRENDING</div>
+              
+              <img src="lamp.jpeg" onclick="viewProduct('Lamp', 1499, 'lamp.jpeg')">
 
-<div class="card">
-<h3><i class="fab fa-js"></i> JavaScript</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="85"></div>
-</div>
-<p>DOM manipulation, interactive UI, API integration & dynamic features.</p>
-</div>
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Lamp', 1499, 'lamp.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Lamp', 1499, 'lamp.jpeg')"></i>
+              </div>
 
-<div class="card">
-<h3><i class="fab fa-figma"></i> Figma UI Design</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="80"></div>
-</div>
-<p>Wireframes, UI systems, modern layouts & mobile-first design.</p>
-</div>
+            </div>
 
-<div class="card">
-<h3><i class="fab fa-wordpress"></i> WordPress</h3>
-<div class="skill-bar">
-<div class="skill-progress" data="70"></div>
-</div>
-<p>Learning WordPress website customization, themes & page builders.</p>
-</div>
+            <h3>Decor Lamp</h3>
+            <p>₹1499</p>
+            <p class="desc">
+              Modern decorative lamp with warm lighting for aesthetic home interior.
+            </p>
+            <div class="rating">⭐ 4.3</div>
 
-</div>
-</section>
+            <div class="btns">
+             <button onclick="addToCart('Lamp', 1499, 'lamp.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Lamp', 1499, 'lamp.jpeg')">Buy Now</button>
+            </div>
 
-<!-- PROJECTS -->
+        </div>
 
-<section id="projects">
 
-<h2 class="section-title">
-Featured Projects
-</h2>
+        <div class="card" data-category="home">
 
-<div class="projects-grid">
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+              <img src="plant.jpeg" onclick="viewProduct('Plant', 599, 'plant.jpeg')">
 
-<div class="card project-card">
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Plant', 599, 'plant.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Plant', 599, 'plant.jpeg')"></i>
+              </div>
 
-<img src="portfolio-interface.jpeg" class="project-img">
+            </div>
 
-<h3>Portfolio Website</h3>
+            <h3>Indoor Plant</h3>
+            <p>₹599</p>
+            <p class="desc">
+              Fresh indoor plants that adds natural beauty and freshness to your home.
+            </p>
+            <div class="rating">⭐ 4.4</div>
 
-<p>
-Modern responsive personal branding website with animations.
-</p>
+            <div class="btns">
+             <button onclick="addToCart('Plant', 599, 'plant.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Plant', 599, 'lamp.jpeg')">Buy Now</button>
+            </div>
 
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
+        </div>
 
-<a href=" https://shreyagharat2007-collab.github.io/Shreya-Portfolio-/" class="btn btn-primary">
-Live Demo
-</a>
 
-<a href="https://github.com/shreyagharat2007-collab/Shreya-Portfolio-" class="btn btn-secondary">
-GitHub
-</a>
+        <div class="card" data-category="beauty">
 
-</div>
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+              <img src="lipstick.jpeg" onclick="viewProduct('Lipstick', 799, 'lipstick.jpeg')">
 
-<div class="card project-card">
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Lipstick', 799, 'lipstick.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Lipstick', 799, 'lipstick.jpeg')"></i>
+              </div>
 
-<img src="To-Do-app.jpeg" class="project-img">
+            </div>
 
-<h3>To-Do App</h3>
+            <h3>Lipstick</h3>
+            <p>₹799</p>
+            <p class="desc">
+              Long lasting matte lipstick with rich color and smooth texture finish.
+            </p>
+            <div class="rating">⭐ 4.4</div>
 
-<p>
-Advanced task management app with priority system, drag & drop and local storage.
-</p>
+            <div class="btns">
+             <button onclick="addToCart('Lipstick', 799, 'lipstick.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Lipstick', 799, 'lipstick.jpeg')">Buy Now</button>
+            </div>
+        </div>
 
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
 
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
+        <div class="card" data-category="beauty">
 
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
+            <div class="img-box">
+              <div class="badge">BEST SELLER</div>
+              
+              <img src="foundation.jpeg" onclick="viewProduct('Foundation', 1299, 'foundation.jpeg')">
 
-</div>
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Foundation', 1299, 'foundation.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Foundation', 1299, 'foundation.jpeg')"></i>
+              </div>
 
-<div class="card project-card">
+            </div>
 
-<img src="e-commerce-ui.jpeg" class="project-img">
 
-<h3>E-Commerce UI</h3>
+            <h3>Foundation</h3>
+            <p>₹1299</p>
+            <p class="desc">
+              Full coverage lightweight foundation for smooth and flowless skin look.
+            </p>
+            <div class="rating">⭐ 4.3</div>
 
-<p>
-Beautiful shopping interface with clean product layout and responsive design.
-</p>
+            <div class="btns">
+             <button onclick="addToCart('Foundation', 1299, 'foundation.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Foundation', 1299, 'foundation.jpeg')">Buy Now</button>
+            </div>
 
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
+        </div>
 
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
 
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
+        <div class="card" data-category="beauty">
 
-</div>
+            <div class="img-box">
+              <div class="badge">30% OFF</div>
+              
+              <img src="serum.jpeg" onclick="viewProduct('Serum', 349, 'serum.jpeg')">
 
-<div class="card project-card">
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Serum', 349, 'serum.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Serum', 349, 'serum.jpeg')"></i>
+              </div>
 
-<img src="weather-app-interface.jpeg" class="project-img">
+            </div>
 
-<h3>Weather App</h3>
+            <h3>Face Serum</h3>
+            <p>₹349</p>       
+            <p class="desc">
+              Jamun Active Acne Serum that helps to reduce pimples, marks and improves skin glow.
+            </p>
+            <div class="rating">⭐ 4.5</div>
 
-<p>
-Modern weather app with real-time weather information using API integration.
-</p>
+            <div class="btns">
+             <button onclick="addToCart('Serum', 349, 'serum.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Serum', 349, 'serum.jpeg')">Buy Now</button>
+            </div>
+        </div>
 
-<div class="project-tags">
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-</div>
 
-<a href="#" class="btn btn-primary">
-Live Demo
-</a>
+        <div class="card" data-category="beauty">
 
-<a href="#" class="btn btn-secondary">
-GitHub
-</a>
+            <div class="img-box">
+              <div class="badge">BEST SELLER</div>
+              
+              <img src="facewash.jpeg" onclick="viewProduct('Face Wash', 345, 'facewash.jpeg')">
 
-</div>
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Face Wash', 345, 'facewash.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Face Wash', 345, 'facewash.jpeg')"></i>
+              </div>
 
-</div>
+            </div>
 
-</section>
+            <h3>Face Wash</h3>
+            <p>₹345</p>
+            <p class="desc">
+              Jamun Active Acne gentle acne Face Wash that deeply cleans skin and remove excess oil.
+            </p>
+            <div class="rating">⭐ 4.5</div>
 
-<!-- CONTACT -->
+            <div class="btns">
+             <button onclick="addToCart('Face Wash', 345, 'facewash.jpeg')">Add to Cart</button>
+             <button onclick="buyNow('Face Wash', 345, 'facewash.jpeg')">Buy Now</button>
+            </div>
 
-<section id="contact">
+        </div>
 
-<h2 class="section-title">
-Contact Me
-</h2>
 
-<form class="card contact-form" onsubmit="sendMessage(event)">
+        <div class="card" data-category="kids">
 
-<input type="text" id="name" placeholder="Your Name">
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+              <img src="toycar.jpeg" onclick="viewProduct('Toy Car', 899, 'toycar.jpeg')">
 
-<input type="email" id="email" placeholder="Your Email">
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Toy Car', 899, 'toycar.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Toy Car', 899, 'toycar.jpeg')"></i>
+              </div>
 
-<textarea id="message" rows="5" placeholder="Your Message"></textarea>
+            </div>
 
-<button class="btn btn-primary">
-Send Message
-</button>
+          <h3>Toy Car</h3>
+          <p>₹899</p>
+          <p class="desc">
+            Toy Car with attractive design perfect for kids indoor play time.
+          </p>
+          <div class="rating">⭐ 4.5</div>
 
-<p id="formMsg"></p>
+          <div class="btns">
+           <button onclick="addToCart('Toy Car', 899, 'toycar.jpeg')">Add to Cart</button>
+           <button onclick="buyNow('Toy Car', 899, 'toycar.jpeg')">Buy Now</button>
+          </div>
 
-</form>
+        </div>
 
-</section>
 
-<!-- FOOTER -->
+        <div class="card" data-category="kids">
 
-<footer>
-<b>© 2026 Shreya Nitin Gharat | Designed with ❤️</b>
-</footer>
+            <div class="img-box">
+              <div class="badge">TRENDING</div>
+          
+              <img src="teddy.jpeg" onclick="viewProduct('Teddy Bear', 1299, 'teddy.jpeg')">
 
-<script>
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist( this, 'Teddy Bear', 1299, 'teddy.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Teddy Bear', 1299, 'teddy.jpeg')"></i>
+              </div>
 
-/* TYPING EFFECT */
+            </div>
 
-let text = "Hi, I'm Shreya 👩‍💻";
-let i = 0;
+         <h3>Teddy Bear</h3>
+         <p>₹1299</p>
+         <p class="desc">
+          Soft and cute teddy bear made with premium fluffy fabric for kids.
+         </p>
+         <div class="rating">⭐ 4.6</div>
 
-function type(){
+          <div class="btns">
+           <button onclick="addToCart('Teddy Bear', 1299, 'teddy.jpeg')">Add to Cart</button>
+           <button onclick="buyNow('Teddy Bear', 1299, 'teddy.jpeg')">Buy Now</button>
+          </div>
 
-if(i < text.length){
+        </div>
 
-document.querySelector(".typing").innerHTML += text.charAt(i);
 
-i++;
+        <div class="card" data-category="kids">
 
-setTimeout(type,90);
+            <div class="img-box">
+             <div class="badge">NEW ARRIVAL</div>
+             
+             <img src="kidsdress.jpeg" onclick="viewProduct('Kids Dress', 1499, 'kidsdress.jpeg')">
 
-}
+             <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Kids Dress', 1499, 'kidsdress.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Kids Dress', 1499, 'kidsdress.jpeg')"></i>
+             </div>
 
-}
+            </div>
 
-type();
+          <h3>Kids Dress</h3>
+          <p class="desc">
+            Stylish and colorful kids dress with soft fabric and comfortable fitting.
+          </p>
+          <p>₹1499</p>
 
-/* SKILL ANIMATION */
+          <div class="rating">⭐ 4.3</div>
 
-window.addEventListener("scroll",()=>{
+          <div class="btns">
+           <button onclick="addToCart('Kids Dress', 1499, 'kidsdress.jpeg')">Add to Cart</button>
 
-document.querySelectorAll(".skill-progress").forEach((el)=>{
+           <button onclick="buyNow('Kids Dress', 1499, 'kidsdress.jpeg')">Buy Now</button>
+          </div>
 
-let top = el.getBoundingClientRect().top;
+        </div>
 
-if(top < window.innerHeight - 50){
 
-el.style.width = el.getAttribute("data") + "%";
+        <div class="card" data-category="kids">
 
-}
+            <div class="img-box">
+              <div class="badge">NEW ARRIVAL</div>
+              
+              <img src="kidsshoes.jpeg" onclick="viewProduct('Kids Shoes', 999, 'kidsshoes.jpeg')">
 
-});
+              <div class="overlay-icons">
+                <i class="fa fa-heart" onclick="addToWishlist(this, 'Kids Shoes', 999, 'kidsshoes.jpeg')"></i>
+                <i class="fa fa-shopping-cart" onclick="addToCart('Kids Shoes', 999, 'kidsshoes.jpeg')"></i>
+              </div>
+
+            </div>
+
+          <h3>Kids Shoes</h3>
+          <p>₹999</p>
+          <p class="desc">
+          Comfortable kids shoes with lighweight design and trendy stylish look.
+          </p>
+          <div class="rating">⭐ 4.2</div>
+
+          <div class="btns">
+           <button onclick="addToCart('Kids Shoes', 999, 'kidsshoes.jpeg')">Add to Cart</button>
+           <button onclick="buyNow('Kids Shoes', 999, 'kidsshoes')">Buy Now</button>
+          </div>
+        
+        </div>
+
+        <div class="card" data-category="fashion">
+          <div class="img-box">
+            <div class="badge">TRENDING</div>
+            <img src="hand-bag.jpeg" onclick="viewProduct('Hand Bag', 599, 'hand-bag.jpeg')">
+            <div class="overlay-icons">
+              <i class="fa fa-heart" onclick="addToWishlist(this, 'Hand Bag', 599, 'hand-bag.jpeg')"></i>
+              <i class="fa fa-shopping-cart" onclick="addToCart('Hand Bag', 599, 'hand-bag.jpeg')"></i>
+            </div>
+
+          </div>
+
+          <h3>Hand Bag</h3>
+          <p>₹599</p>
+          <p class="desc">
+            Elegant handbag with premium quality material, spacious compartments, and stylish modern design perfect for daily use and special occasions.
+          </p>
+          <div class="rating">⭐ 4.4</div>
+
+          <div class="btns">
+            <button onclick="addToCart('Hand Bag', 599, 'hand-bag.jpeg')">Add To Cart</button>
+            <button onclick="buyNow('Hand Bag', 599, 'hand-bag.jpeg')">Buy Now</button>
+          </div>
+
+        </div>
+
+        <div class="card" data-category="electronics">
+          <div class="img-box">
+            <div class="badge">PREMIUM</div>
+            <img src="keyboard.jpeg" onclick="viewProduct('Wireless Keyboard', 1999, 'keyboard.jpeg')">
+
+            <div class="overlay-icons">
+              <i class="fa fa-heart" onclick="addToWishlist(this, 'Wireless Keyboard', 1999, 'keyboard.jpeg')"></i>
+              <i class="fa fa-shopping-cart" onclick="addToCart('Wireless Keyboard', 1999, 'keyboard.jpeg')"></i>
+            </div>
+
+          </div>  
+            <h3>Wireless Keyboard</h3>
+            <p>₹1999</p>
+            <p class="desc">
+              High-performance keyboard with smooth keys, comfortable typing experience, and stylish design ideal for gaming, office, and daily work.
+            </p>
+            <div class="rating">⭐ 4.8</div>
+
+            <div class="btns">
+              <button onclick="addToCart('Wireless Keyboard', 1999, 'keyboard.jpeg')">Add to  Cart</button>
+              <button onclick="buyNow('Wireless Keyboard', 1999, 'keyboard.jpeg')">Buy Now</button>
+            </div>
+
+        </div>
+
+        <div class="card" data-category="home">
+          <div class="img-box">
+            <div class="badge">30% OFF</div>
+            <img src="curtains.jpeg" onclick="viewProduct('Curtains', 799, 'curtains.jpeg')">
+
+            <div class="overlay-icons">
+              <i class="fa fa-heart" onclick="addToWishlist(this, 'Curtains', 799, 'curtains.jpeg')"></i>
+              <i class="fa fa-shopping-cart" onclick="addToCart('Curtains', 799, 'curtains.jpeg')"></i>
+            </div>
+
+          </div>
+
+          <h3>Curtains</h3>
+          <p>₹799</p>
+          <p class="desc">
+            Beautiful premium curtains with soft fabric and elegant patterns that add a modern and cozy touch to your home décor.
+          </p>
+          <div class="rating">⭐ 4.2</div>
+          <div class="btns">
+            <button onclick="addToCart('Curtains', 799, 'curtains.jpeg')">Add to Cart</button>
+            <button onclick="buyNow('Curtains', 799, 'curtains.jpeg')">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="card" data-category="beauty">
+          <div class="img-box">
+            <div class="badge">HOT</div>
+            <img src="perfume.jpeg" onclick="viewProduct('Perfume', 399, 'perfume.jpeg')">
+             
+            <div class="overlay-icons">
+              <i class="fa fa-heart" onclick="addToWishlist(this, 'Perfume', 399, 'perfume.jpeg')"></i>
+              <i class="fa fa-shopping-cart" onclick="addToCart('Perfume', 399, 'perfume.jpeg')"></i>
+            </div>
+            
+          </div>
+          <h3>Perfume</h3>
+          <p>₹399</p>
+          <p class="desc">
+            Long-lasting premium perfume with a refreshing fragrance that keeps you feeling confident, fresh, and elegant all day long.
+          </p>
+          <div class="rating">⭐ 4.1</div>
+          <div class="btns">
+            <button onclick="addToCart('Perfume', 399, 'perfume.jpeg')">Add to Cart</button>
+            <button onclick="buyNow('Perfume', 399, 'perfume.jpeg')">Buy Now</button>
+          </div>
+        </div>
 
-});
+        <div class="card" data-category="electronics">
+          <div class="img-box">
+            <div class="badge">BEST SELLER</div>
+            <img src="hair-dryer.jpeg" onclick="viewProduct('Hair Dryer', 1599, 'hair-dryer.jpeg')">
 
-/* CONTACT FORM */
+            <div class="overlay-icons">
+              <i class="fa fa-heart" onclick="addToWishlist(this, 'Hair Dryer', 1599, 'hair-dryer.jpeg')"></i>
+              <i class="fa fa-shopping-cart" onclick="addToCart('Hair Dryer', 1599, 'hair-dryer.jpeg')"></i>
+            </div>
+          </div>
 
-function sendMessage(event){
+          <h3>Hair Dryer</h3>
+          <p>₹1599</p>
+          <p class="desc">
+             Powerful hair dryer with fast drying technology, multiple heat settings, and lightweight design for smooth and shiny hair styling.
+          </p>
+          <div class="rating">⭐ 4.4</div>
+          <div class="btns">
+            <button onclick="addToCart('Hair Dryer', 1599, 'hair-dryer.jpeg')">Add to Cart</button>
+            <button onclick="buyNow('Hair Dryer', 1599, 'hair-dryer.jpeg')">Buy Now</button>
+          </div>
 
-event.preventDefault();
+        </div>
 
-let name = document.getElementById("name").value;
 
-let email = document.getElementById("email").value;
+        <div class="card" data-category="kids">
+          <div class="img-box">
+            <div class="badge">NEW ARRIVAL</div>
+            <img src="school-bag.jpeg" onclick="viewProduct('School Bag', 657, 'school-bag.jpeg')">
 
-let message = document.getElementById("message").value;
+            <div class="overlay-icons">
+              <i class="fa fa-heart" onclick="addToWishlist(this, 'School Bag', 657, 'school-bag.jpeg')"></i>
+              <i class="fa fa-shopping-cart" onclick="addToCart('School Bag', 657, 'school-bag.jpeg')"></i>
+            </div>
+          </div>
 
-let msg = document.getElementById("formMsg");
+          <h3>School Bag</h3>
+          <p>₹657</p>
+          <p class="desc">
+            Durable and spacious school bag with comfortable straps, multiple compartments, and trendy design perfect for everyday school use.
+          </p>
+          <div class="rating">⭐ 4.1</div>
+          <div class="btns">
+            <button onclick="addToCart('School Bag', 657, 'school-bag.jpeg')">Add to Cart</button>
+            <button onclick="buyNow('School Bag', 657, 'school-bag.jpeg')">Buy Now</button>
+          </div>
+          
+        </div>
+
 
-if(name === "" || email === "" || message === ""){
 
-msg.innerHTML = "❌ Please fill all fields";
-msg.style.color = "red";
+      
+
+    </div>
 
-return;
-}
-
-if(!email.includes("@")){
-
-msg.innerHTML = "❌ Enter Valid Email";
-msg.style.color = "red";
-
-return;
-}
-
-msg.innerHTML = "✅ Message Sent Successfully!";
-msg.style.color = "green";
-
-}
-
-/* SCROLL REVEAL */
-
-const observer = new IntersectionObserver((entries)=>{
-
-entries.forEach((entry)=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-});
-
-document.querySelectorAll("section,.card").forEach((el)=>{
-
-el.classList.add("hidden");
-
-observer.observe(el);
-
-});
-
-</script>
-
+    
+
+    <script src="script.js"></script>
+
+    
+
+    <div class="success-popup" id="successPopup">
+
+      <div class="success-box">
+
+       <i class="fa fa-check-circle"></i>
+
+       <h2>Order Placed 🎉</h2>
+
+       <p>Your order placed successfully.</p>
+
+       <button onclick="closeSuccess()">Continue Shopping</button>
+
+      </div>
+
+    </div>
+
+
+    <div class="floating-cart" onclick="goToCart()">
+
+     <i class="fa fa-shopping-cart"></i>
+
+     <span id="floatingCount">0</span>
+
+    </div>
+
+    <div class="floating-wishlist" onclick="goToWishlist()">
+      <i class="fa fa-heart"></i>
+      <span id="floatingWishlistCount">0</span>
+    </div>
+
+    <div class="login-modal" id="loginModal">
+
+      <div class="login-box">
+        <span class="close-login" onclick="closeLogin()">&times;</span>
+        <h2>Welcome Back 👋</h2>
+        <input type="email" placeholder="Enter Email">
+        <input type="password" placeholder="Enter Password">
+        <button>Login</button>
+        <p>Don't have account?
+          <span>Sign Up</span>
+        </p>
+      </div>
+    </div>
+    
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-box">
+                <h2>ShopX</h2>
+
+                <p>
+                    Your one-step destination for fashion, electronics, beauty, home & more.
+                </p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+
+                <p>Home</p>
+                <p>Categories</p>
+                <p>Wishlist</p>
+                <p>Cart</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Customer Care</h3>
+
+                <p>Help Center</p>
+                <p>Track Order</p>
+                <p>Return Policy</p>
+                <p>24/7 Support</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Follow Us</h3>
+
+                <div class="social-icons">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+            &copy <span id="year"></span> ShopX | All Rights Reserved
+        </p>
+
+    </footer>
+    
+ <div id="toast"></div>
+ 
 </body>
 </html>

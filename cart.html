@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <title>Cart</title>
+        <link rel="stylesheet" href="style.css"></link>
+    </head>
+
+    <body>
+
+        <h1 class="page-title">My Cart</h1> 
+
+      <div class="cart-page">
+
+        <div id="cartItems"></div>
+
+        <div id="summary">
+            <h2>Total: ₹<span id="total">0</span></h2>
+            <button onclick="checkout()">Checkout</button>
+
+            <input type="text" id="coupon" placeholder="Enter Coupon">
+
+             <button onclick="applyCoupon()">Apply Coupon</button>
+        </div>
+
+      </div>
+
+    </body>
+
+    <script>
+
+        function increaseQty(index){
+
+    cart[index].qty++;
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    location.reload();
+}
+
+function decreaseQty(index){
+
+    if(cart[index].qty > 1){
+        cart[index].qty--;
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    location.reload();
+}
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let container =  document.getElementById("cartItems");
+        let total = 0;
+
+        cart.forEach((item, index)=>{
+            total += item.price * item.qty;
+
+            container.innerHTML += `
+        <div class="cart-card">
+            <img src="${item.image}" class="cart-img">
+            <div class="cart-details">
+
+            <h3>${item.name}</h3>
+            <p>₹${item.price}</p>
+
+            <div class="qty-box">
+                <button onclick="decreaseQty(${index})">➖</button>
+                <span>${item.qty}</span>
+                <button onclick="increaseQty(${index})">➕</button>
+        </div>
+
+        <button class="remove-btn" onclick="removeItems(${index})">Remove</button>
+        </div>
+        </div>
+       `;
+        });
+
+        document.getElementById("total").innerText = total;
+
+        function removeItems(index){
+            cart.splice(index,1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+        }
+
+        if(cart.length === 0){
+
+container.innerHTML = `
+<div class="empty-cart">
+<h2>Your Cart is Empty 🛒</h2>
+<p>Add products to continue shopping</p>
+</div>
+`;
+
+}
+
+        function goToCheckout(){
+            window.location.href = "checkout.html";
+        }
+    </script>
+</html>

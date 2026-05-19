@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wishlist</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1 class="page-title">My Wishlist</h1>
+
+        <div id="wishlistItems"></div>
+
+        <script>
+
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            let container = document.getElementById("wishlistItems");
+
+             wishlist.forEach((item,index)=>{
+
+             container.innerHTML += `
+    
+             <div class="card">
+                <img src="${item.image}">
+                <h3>${item.name}</h3>
+                <p>₹${item.price}</p>
+
+              <button onclick="removeWishlist(${index})">Remove</button>
+             </div>
+
+    `;
+});
+
+function removeWishlist(index){
+
+    wishlist.splice(index,1);
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    location.reload();
+
+}
+
+
+
+            
+        </script>
+    </body>
+</html>

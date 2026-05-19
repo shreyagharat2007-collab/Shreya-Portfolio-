@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Your Orders</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <h1 class="page-title">
+        My Orders
+    </h1>
+
+    <div id="ordersContainer"
+    class="orders-container">
+
+    </div>
+
+<script>
+
+// GET ORDERS FROM LOCAL STORAGE
+
+let orders = JSON.parse(
+    localStorage.getItem("orders")
+) || [];
+
+orders = orders.filter(item => item.image);
+
+let container =
+document.getElementById(
+    "ordersContainer"
+);
+
+// EMPTY ORDERS
+
+if(orders.length === 0){
+
+    container.innerHTML = `
+
+    <div class="empty-orders">
+
+        <h2>No Orders Yet 😔</h2>
+
+        <p>Start Shopping To See Orders</p>
+
+        <button onclick="goHome()">
+            Continue Shopping
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+// SHOW ORDERS
+
+else{
+
+    orders.forEach((item,index)=>{
+
+        container.innerHTML += `
+
+        <div class="order-card">
+
+            <div class="order-product">
+
+                <img 
+                src="${item.image}" 
+                class="order-img">
+
+                <div class="order-info">
+
+                    <div class="order-top">
+
+                        <h2>${item.name}</h2>
+
+                        <span class="delivered">
+                            Order Placed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Quantity: ${item.qty}
+                    </p>
+
+                    <p>
+                        Price: ₹${item.price * item.qty}
+                    </p>
+
+                    <p class="order-id">
+                        Order ID: ${item.id}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="tracking">
+
+                <div class="track active-track">
+                    Order Placed
+                </div>
+
+                <div class="track-line active-line"></div>
+
+                <div class="track">
+                    Packed
+                </div>
+
+                <div class="track-line"></div>
+
+                <div class="track">
+                    Shipped
+                </div>
+
+                <div class="track-line"></div>
+
+                <div class="track">
+                    Delivered
+                </div>
+
+            </div>
+
+            <div class="order-actions">
+
+                <button class="track-btn">
+                    Track
+                </button>
+
+                <button class="cancel-btn">
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+// GO HOME
+
+function goHome(){
+
+    window.location.href = "index.html";
+
+}
+
+// TRACKING ANIMATION
+
+let allCards =
+document.querySelectorAll(".order-card");
+
+allCards.forEach((card,index)=>{
+
+    let tracks =
+    card.querySelectorAll(".track");
+
+    let lines =
+    card.querySelectorAll(".track-line");
+
+    setTimeout(()=>{
+
+        tracks[1]
+        .classList.add("active-track");
+
+        lines[1]
+        .classList.add("active-line");
+
+    },2000 + index * 500);
+
+    setTimeout(()=>{
+
+        tracks[2]
+        .classList.add("active-track");
+
+        lines[2]
+        .classList.add("active-line");
+
+    },4000 + index * 500);
+
+    setTimeout(()=>{
+
+        tracks[3]
+        .classList.add("active-track");
+
+    },6000 + index * 500);
+
+});
+
+</script>
+
+</body>
+
+</html>

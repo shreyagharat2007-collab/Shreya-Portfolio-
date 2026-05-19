@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product Details</title>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+
+    <div class="product-container">
+
+
+         <div class="gallery">
+
+              <img id="mainImage" class="main-image">
+
+
+        </div>
+
+        <div class="product-details">
+           <h2 id="name"></h2>
+           <p id="price"></p>
+           <p>⭐ 4.5 | 1000+ reviews </p>
+           <p>This is a premium quality product !</p>
+
+            
+
+            <div class="sizes" id="dynamicOption"></div>
+
+ 
+            <div class="delivery-check">
+
+             <h3>Check Delivery</h3>
+
+                <div class="delivery-box">
+
+                  <input type="text"
+                   id="pincode"
+                   placeholder="Enter Pincode">
+
+                  <button onclick="checkDelivery()">Check</button>
+
+                </div>
+
+             <p id="deliveryMessage"></p>
+
+            </div>
+
+           <button onclick="addToCartFromPage()">Add to Cart</button>
+           <button onclick="buyNowFromPage()">Buy Now</button>
+
+           
+            
+        </div>
+
+
+        <div class="reviews">
+
+    <h2>Customer Reviews</h2>
+
+    <div class="review-card">
+
+        <div class="review-top">
+
+            <i class="fa fa-user-circle"></i>
+
+            <div>
+                <h4>Rahul</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+            </div>
+
+        </div>
+
+        <p class="review-text">
+            Amazing quality product.
+            Totally worth it 😍
+        </p>
+
+    </div>
+
+
+        <div class="review-card">
+
+           <div class="review-top">
+
+             <i class="fa fa-user-circle"></i>
+
+            <div>
+                <h4>Priya</h4>
+                <p>⭐⭐⭐⭐☆</p>
+            </div>
+
+          </div>
+
+           <p class="review-text">
+            Packaging and delivery
+            was very good ❤️
+           </p>
+
+          </div>
+
+        </div>
+
+        <div class="similar-products">
+
+      <h2>Similar Products</h2>
+
+        <div class="similar-grid">
+
+             <div class="similar-card">
+               <img src="tshirt.jpeg">
+               <h4>T-Shirt</h4>
+               <p>₹499</p>
+            </div>
+
+            <div class="similar-card">
+              <img src="watch.jpeg">
+              <h4>Smart Watch</h4>
+              <p>₹2999</p>
+            </div>
+
+            <div class="similar-card">
+                <img src="hand-bag.jpeg">
+                <h4>Hand Bag</h4>
+                <p>₹599</p>
+            </div>
+
+            <div class="similar-card">
+                <img src="keyboard.jpeg">
+                <h4>Wireless Keyboard</h4>
+                <p>₹1999</p>
+            </div>
+
+            <div class="similar-card">
+                <img src="curtains.jpeg">
+                <h4>Curtains</h4>
+                <p>₹799</p>
+            </div>
+
+            <div class="similar-card">
+                <img src="perfume.jpeg">
+                <h4>Perfumes</h4>
+                <p>₹399</p>
+            </div>
+
+            <div class="similar-card">
+                <img src="hair-dryer.jpeg">
+                <h4>Hair Dryer</h4>
+                <p>₹1599</p>
+            </div>
+
+            <div class="similar-card">
+                <img src="school-bag.jpeg">
+                <h4>School Bag</h4>
+                <p>₹657</p>
+            </div>
+
+
+        </div>
+ 
+        
+
+    </div>
+
+
+    <script>
+         let product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+           if(product){
+
+             document.getElementById("name").innerText =
+              product.name;
+
+              document.getElementById("price").innerText =
+              "₹" + product.price;
+
+              document.getElementById("mainImage").src =
+              product.image;
+
+}
+
+// Dynamic Selector
+let optionHTML = "";
+
+if(product.options){
+
+    optionHTML += `
+    <h3>${product.options.title}</h3>
+
+    <div class="size-options">
+    `;
+
+    product.options.values.forEach(value=>{
+
+        optionHTML += `
+        <span onclick="selectSize(this)">
+            ${value}
+        </span>
+        `;
+
+    });
+
+    optionHTML += `</div>`;
+
+    document.getElementById("dynamicOption")
+    .innerHTML = optionHTML;
+
+}
+           
+        function addToCartFromPage(){
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push({...product, qty:1});
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("Added to Cart");
+        }
+
+        function buyNowFromPage(){
+            localStorage.setItem("cart", JSON.stringify([{...product, qty:1}]));
+            window.location.href = "checkout.html";
+        }
+
+        function openPayment(){
+    document.getElementById("paymentSection").style.display = "block";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+
+
+function changeImage(src){
+    document.getElementById("mainImage").src = src;
+}
+
+
+function selectSize(element){
+
+    document
+    .querySelectorAll(".size-options span")
+    .forEach(size=>{
+        size.classList.remove("active-size");
+    });
+
+    element.classList.add("active-size");
+}
+
+function selectColor(element){
+
+    document
+    .querySelectorAll(".color")
+    .forEach(color=>{
+        color.classList.remove("active-color");
+    });
+
+    element.classList.add("active-color");
+}
+
+function checkDelivery(){
+
+    let pin =
+    document.getElementById("pincode").value;
+
+    let message =
+    document.getElementById("deliveryMessage");
+
+    if(pin.length === 6){
+
+        message.innerText =
+        "Delivery Available ✅";
+
+        message.style.color = "green";
+
+    }
+    else{
+
+        message.innerText =
+        "Invalid Pincode ❌";
+
+        message.style.color = "red";
+
+    }
+}
+
+document
+.querySelectorAll(".payment-card")
+.forEach(card=>{
+
+    card.onclick = function(){
+
+        document
+        .querySelectorAll(".payment-card")
+        .forEach(c=>{
+            c.classList.remove("active-payment");
+        });
+
+        this.classList.add("active-payment");
+
+    }
+
+});
+
+function placeOrder(){
+
+    document
+    .getElementById("successPopup")
+    .style.display = "flex";
+
+}
+
+function closeSuccess(){
+
+    window.location.href = "index.html";
+
+}
+
+    </script>
+
+    <div class="success-popup" id="successPopup">
+      <div class="success-box">
+        <i class="fa fa-check-circle"></i>
+        <h2>Order Placed Successfully 🎉</h2>
+        <p>Your order will arrive soon.</p>
+        <button onclick="closeSuccess()">Continue Shopping</button>
+       </div>
+    </div>
+
+    </body>
+</html>
